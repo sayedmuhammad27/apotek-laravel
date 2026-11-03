@@ -13,19 +13,11 @@ use App\Http\Controllers\PostmanExportController;
 |--------------------------------------------------------------------------
 */
 
-// Main Dashboard (Form inputs, statistics, tables, and Postman API explorer)
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-// CRUD Web Routes
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('staf', StafApotekController::class);
 Route::resource('obat', ObatController::class);
 
-// Postman Export Routes
 Route::get('/postman/collection.json', [PostmanExportController::class, 'downloadCollection'])->name('postman.collection');
 Route::get('/postman/environment.json', [PostmanExportController::class, 'downloadEnvironment'])->name('postman.environment');
-
-// Laporan HTML Viewer Route
-Route::get('/laporan', function () {
-    return response()->file(base_path('LAPORAN_PROJEK.html'));
-})->name('laporan');

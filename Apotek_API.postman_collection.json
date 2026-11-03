@@ -2,9 +2,16 @@
   "info": {
     "_postman_id": "apotek-laravel-api-collection",
     "name": "Apotek Laravel RESTful API Collection",
-    "description": "Koleksi Postman untuk pengujian API Pelanggan, Staf Apotek, dan Daftar Obat (Projek Kelompok Apotek)",
+    "description": "Koleksi Postman untuk pengujian API Pelanggan, Staf Apotek, dan Daftar Obat (MySQL XAMPP)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    }
+  ],
   "item": [
     {
       "name": "1. Pelanggan",
@@ -42,7 +49,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"id_pelanggan\": \"PLG-099\",\n  \"nama\": \"Muhammad Syahrial\",\n  \"alamat\": \"Jl. Syiah Kuala No. 100, Banda Aceh\",\n  \"no_hp\": \"081299887766\"\n}"
+              "raw": "{\n  \"id_pelanggan\": \"PLG-010\",\n  \"nama\": \"Muhammad Syahrial\",\n  \"alamat\": \"Jl. Syiah Kuala No. 100, Banda Aceh\",\n  \"no_hp\": \"081299887766\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/pelanggan",
@@ -104,9 +111,9 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/pelanggan/PLG-099",
+              "raw": "{{base_url}}/api/pelanggan/PLG-010",
               "host": ["{{base_url}}"],
-              "path": ["api", "pelanggan", "PLG-099"]
+              "path": ["api", "pelanggan", "PLG-010"]
             }
           }
         }
@@ -148,7 +155,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"id_staff\": \"STF-099\",\n  \"nama\": \"Nadia Amanda, S.Farm\",\n  \"alamat\": \"Jl. Pelajar No. 15, Banda Aceh\",\n  \"tanggal_lahir\": \"2001-05-20\",\n  \"tempat_lahir\": \"Sigli\",\n  \"no_hp\": \"082366778899\"\n}"
+              "raw": "{\n  \"id_staff\": \"STF-010\",\n  \"nama\": \"Nadia Amanda, S.Farm\",\n  \"alamat\": \"Jl. Pelajar No. 15, Banda Aceh\",\n  \"tanggal_lahir\": \"2001-05-20\",\n  \"tempat_lahir\": \"Sigli\",\n  \"no_hp\": \"082366778899\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/staff",
@@ -210,9 +217,9 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/staff/STF-099",
+              "raw": "{{base_url}}/api/staff/STF-010",
               "host": ["{{base_url}}"],
-              "path": ["api", "staff", "STF-099"]
+              "path": ["api", "staff", "STF-010"]
             }
           }
         }
@@ -254,7 +261,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"kode_obat\": \"OBT-099\",\n  \"nama_obat\": \"Dexamethasone 0.5mg\",\n  \"stock_obat\": 50,\n  \"tanggal_kadaluarsa\": \"2028-11-30\"\n}"
+              "raw": "{\n  \"kode_obat\": \"OBT-010\",\n  \"nama_obat\": \"Dexamethasone 0.5mg\",\n  \"stock_obat\": 50,\n  \"tanggal_kadaluarsa\": \"2028-11-30\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/obat",
@@ -316,9 +323,9 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/obat/OBT-099",
+              "raw": "{{base_url}}/api/obat/OBT-010",
               "host": ["{{base_url}}"],
-              "path": ["api", "obat", "OBT-099"]
+              "path": ["api", "obat", "OBT-010"]
             }
           }
         }
