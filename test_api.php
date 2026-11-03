@@ -26,8 +26,11 @@ function makeRequest($kernel, $method, $uri, $data = []) {
 
 $suffix = time();
 
-// 1. Test Dashboard
+// 1. Test Landing Page & Dashboard
 $res = makeRequest($kernel, 'GET', '/');
+assert($res['status'] === 200, "Landing Page harus 200");
+
+$res = makeRequest($kernel, 'GET', '/dashboard');
 assert($res['status'] === 200, "Dashboard harus 200");
 
 // 2. Test API Pelanggan GET

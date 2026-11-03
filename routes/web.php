@@ -13,7 +13,8 @@ use App\Http\Controllers\PostmanExportController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'landing'])->name('landing');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('staf', StafApotekController::class);

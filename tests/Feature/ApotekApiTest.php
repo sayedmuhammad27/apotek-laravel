@@ -13,13 +13,20 @@ class ApotekApiTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test Dashboard page renders successfully.
+     * Test Landing and Dashboard page render successfully.
      */
-    public function test_dashboard_renders(): void
+    public function test_landing_page_renders(): void
     {
         $response = $this->get('/');
         $response->assertStatus(200);
-        $response->assertSee('PROJEK KELOMPOK');
+        $response->assertSee('Apotek Farma Care');
+    }
+
+    public function test_dashboard_renders(): void
+    {
+        $response = $this->get('/dashboard');
+        $response->assertStatus(200);
+        $response->assertSee('Apotek Farma Care');
     }
 
     /**

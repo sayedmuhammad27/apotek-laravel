@@ -94,7 +94,9 @@ php artisan migrate:fresh --seed
 ```bash
 php artisan serve
 ```
-Buka peramban Anda dan kunjungi: **`http://127.0.0.1:8000`**
+Buka peramban Anda dan kunjungi:
+- **`http://127.0.0.1:8000`** : Halaman Utama / Landing Page (Gambaran Umum, Statistik Live, & Arsitektur)
+- **`http://127.0.0.1:8000/dashboard`** : Dashboard Manajemen Operasional (Kelola Pelanggan, Staf, & Obat)
 
 *(Di Windows, Anda juga cukup mengklik dua kali file `jalankan-aplikasi.bat`)*
 

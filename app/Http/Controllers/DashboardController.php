@@ -9,6 +9,28 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    public function landing()
+    {
+        try {
+            $totalPelanggan = Pelanggan::count();
+            $totalStaf = StafApotek::count();
+            $totalObat = Obat::count();
+            $totalStok = (int) Obat::sum('stok');
+        } catch (\Throwable $e) {
+            $totalPelanggan = 0;
+            $totalStaf = 0;
+            $totalObat = 0;
+            $totalStok = 0;
+        }
+
+        return view('landing', compact(
+            'totalPelanggan',
+            'totalStaf',
+            'totalObat',
+            'totalStok'
+        ));
+    }
+
     public function index(Request $request)
     {
         $activeTab = $request->get('tab', 'pelanggan');

@@ -10,7 +10,7 @@
 <body>
     <header class="site-header">
         <div class="header-container">
-            <a href="{{ route('dashboard') }}" class="brand-block">
+            <a href="{{ route('landing') }}" class="brand-block">
                 <div class="brand-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 5v14M5 12h14"/>
@@ -24,13 +24,16 @@
 
             <nav aria-label="Navigasi Utama">
                 <div class="header-nav">
-                    <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="nav-link {{ request('tab', 'pelanggan') === 'pelanggan' ? 'active' : '' }}">
+                    <a href="{{ route('landing') }}" class="nav-link {{ request()->routeIs('landing') ? 'active' : '' }}">
+                        Beranda
+                    </a>
+                    <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="nav-link {{ request()->routeIs('dashboard') && request('tab', 'pelanggan') === 'pelanggan' ? 'active' : '' }}">
                         Pelanggan
                     </a>
-                    <a href="{{ route('dashboard', ['tab' => 'staf']) }}" class="nav-link {{ request('tab') === 'staf' ? 'active' : '' }}">
+                    <a href="{{ route('dashboard', ['tab' => 'staf']) }}" class="nav-link {{ request()->routeIs('dashboard') && request('tab') === 'staf' ? 'active' : '' }}">
                         Staf Apotek
                     </a>
-                    <a href="{{ route('dashboard', ['tab' => 'obat']) }}" class="nav-link {{ request('tab') === 'obat' ? 'active' : '' }}">
+                    <a href="{{ route('dashboard', ['tab' => 'obat']) }}" class="nav-link {{ request()->routeIs('dashboard') && request('tab') === 'obat' ? 'active' : '' }}">
                         Daftar Obat
                     </a>
                     <a href="{{ route('postman.collection') }}" class="nav-action-btn">
