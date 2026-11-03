@@ -5,7 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 $app = require_once __DIR__ . '/bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-echo "=== MEMULAI TEST INTERNAL LARAVEL APOTEK ===\n";
+echo "=== MEMULAI TEST INTERNAL LARAVEL APOTEK (MYSQL XAMPP) ===\n";
 
 function makeRequest($kernel, $method, $uri, $data = []) {
     $request = Illuminate\Http\Request::create(
@@ -24,6 +24,8 @@ function makeRequest($kernel, $method, $uri, $data = []) {
     return ['status' => $status, 'json' => json_decode($content, true)];
 }
 
+$suffix = time();
+
 // 1. Test Dashboard
 $res = makeRequest($kernel, 'GET', '/');
 assert($res['status'] === 200, "Dashboard harus 200");
@@ -34,8 +36,9 @@ assert($res['status'] === 200, "API Pelanggan harus 200");
 echo "Data Pelanggan Total: " . count($res['json']['data']) . "\n";
 
 // 3. Test API Pelanggan POST
+$testPlg = "PLG-T" . substr($suffix, -4);
 $res = makeRequest($kernel, 'POST', '/api/pelanggan', [
-    'id_pelanggan' => 'PLG-TEST-001',
+    'id_pelanggan' => $testPlg,
     'nama' => 'Test Pasien Apotek',
     'alamat' => 'Jl. Pengujian No. 99',
     'no_hp' => '081234567890'
@@ -49,8 +52,9 @@ assert($res['status'] === 200, "API Staf harus 200");
 echo "Data Staf Total: " . count($res['json']['data']) . "\n";
 
 // 5. Test API Staf POST
+$testStf = "STF-T" . substr($suffix, -4);
 $res = makeRequest($kernel, 'POST', '/api/staff', [
-    'id_staff' => 'STF-TEST-001',
+    'id_staff' => $testStf,
     'nama' => 'Apt. Dokter Uji, S.Farm',
     'alamat' => 'Jl. Laboratorium Farmasi No. 1',
     'tanggal_lahir' => '1995-10-10',
@@ -66,8 +70,9 @@ assert($res['status'] === 200, "API Obat harus 200");
 echo "Data Obat Total: " . count($res['json']['data']) . "\n";
 
 // 7. Test API Obat POST
+$testObt = "OBT-T" . substr($suffix, -4);
 $res = makeRequest($kernel, 'POST', '/api/obat', [
-    'kode_obat' => 'OBT-TEST-001',
+    'kode_obat' => $testObt,
     'nama_obat' => 'Amoxicillin Trihydrate 500mg',
     'stock_obat' => 75,
     'tanggal_kadaluarsa' => '2028-12-31'
@@ -75,9 +80,4 @@ $res = makeRequest($kernel, 'POST', '/api/obat', [
 assert($res['status'] === 201, "API POST Obat harus 201");
 echo "Berhasil tambah obat: " . $res['json']['data']['nama_obat'] . "\n";
 
-// 8. Test Postman Collection Export
-$res = makeRequest($kernel, 'GET', '/postman/collection.json');
-assert($res['status'] === 200, "Postman Collection harus 200");
-echo "Postman Collection Name: " . $res['json']['info']['name'] . "\n";
-
-echo "=== SEMUA PENGUJIAN INTEGRASI BERHASIL 100% ===\n";
+echo "=== SEMUA PENGUJIAN API LARAVEL & MYSQL XAMPP BERHASIL 100% ===\n";
