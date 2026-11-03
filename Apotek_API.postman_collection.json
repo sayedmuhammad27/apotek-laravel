@@ -2,16 +2,9 @@
   "info": {
     "_postman_id": "apotek-laravel-api-collection",
     "name": "Apotek Laravel RESTful API Collection",
-    "description": "Koleksi Postman untuk pengujian API Pelanggan, Staf Apotek, dan Daftar Obat (MySQL XAMPP)",
+    "description": "Koleksi Postman langsung tanpa perlu konfigurasi environment (http://127.0.0.1:8000)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "http://127.0.0.1:8000",
-      "type": "string"
-    }
-  ],
   "item": [
     {
       "name": "1. Pelanggan",
@@ -27,8 +20,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/pelanggan",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/pelanggan",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "pelanggan"]
             }
           }
@@ -52,8 +47,10 @@
               "raw": "{\n  \"id_pelanggan\": \"PLG-010\",\n  \"nama\": \"Muhammad Syahrial\",\n  \"alamat\": \"Jl. Syiah Kuala No. 100, Banda Aceh\",\n  \"no_hp\": \"081299887766\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/pelanggan",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/pelanggan",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "pelanggan"]
             }
           }
@@ -69,8 +66,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/pelanggan/PLG-001",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/pelanggan/PLG-001",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "pelanggan", "PLG-001"]
             }
           }
@@ -94,8 +93,10 @@
               "raw": "{\n  \"nama\": \"Ahmad Fauzi (Updated)\",\n  \"alamat\": \"Jl. Merdeka No. 99, Banda Aceh\",\n  \"no_hp\": \"081234567899\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/pelanggan/PLG-001",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/pelanggan/PLG-001",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "pelanggan", "PLG-001"]
             }
           }
@@ -111,8 +112,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/pelanggan/PLG-010",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/pelanggan/PLG-010",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "pelanggan", "PLG-010"]
             }
           }
@@ -133,8 +136,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/staff",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/staff",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "staff"]
             }
           }
@@ -158,8 +163,10 @@
               "raw": "{\n  \"id_staff\": \"STF-010\",\n  \"nama\": \"Nadia Amanda, S.Farm\",\n  \"alamat\": \"Jl. Pelajar No. 15, Banda Aceh\",\n  \"tanggal_lahir\": \"2001-05-20\",\n  \"tempat_lahir\": \"Sigli\",\n  \"no_hp\": \"082366778899\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/staff",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/staff",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "staff"]
             }
           }
@@ -175,8 +182,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/staff/STF-001",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/staff/STF-001",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "staff", "STF-001"]
             }
           }
@@ -200,8 +209,10 @@
               "raw": "{\n  \"nama\": \"Sayed Muhammad (Manager)\",\n  \"alamat\": \"Jl. Kebon Jeruk No. 17, Banda Aceh\",\n  \"tanggal_lahir\": \"2001-08-15\",\n  \"tempat_lahir\": \"Banda Aceh\",\n  \"no_hp\": \"081122334400\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/staff/STF-001",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/staff/STF-001",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "staff", "STF-001"]
             }
           }
@@ -217,8 +228,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/staff/STF-010",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/staff/STF-010",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "staff", "STF-010"]
             }
           }
@@ -239,8 +252,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/obat",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/obat",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "obat"]
             }
           }
@@ -264,8 +279,10 @@
               "raw": "{\n  \"kode_obat\": \"OBT-010\",\n  \"nama_obat\": \"Dexamethasone 0.5mg\",\n  \"stock_obat\": 50,\n  \"tanggal_kadaluarsa\": \"2028-11-30\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/obat",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/obat",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "obat"]
             }
           }
@@ -281,8 +298,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/obat/OBT-001",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/obat/OBT-001",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "obat", "OBT-001"]
             }
           }
@@ -306,8 +325,10 @@
               "raw": "{\n  \"nama_obat\": \"Paracetamol Forte 650mg\",\n  \"stock_obat\": 150,\n  \"tanggal_kadaluarsa\": \"2028-12-31\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/api/obat/OBT-001",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/obat/OBT-001",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "obat", "OBT-001"]
             }
           }
@@ -323,8 +344,10 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/api/obat/OBT-010",
-              "host": ["{{base_url}}"],
+              "raw": "http://127.0.0.1:8000/api/obat/OBT-010",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
               "path": ["api", "obat", "OBT-010"]
             }
           }
