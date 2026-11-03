@@ -1,71 +1,61 @@
 @extends('layouts.app')
 
-@section('title', 'Sistem Informasi Apotek')
+@section('title', 'Manajemen Data Apotek')
 
 @section('content')
 <main class="main-wrapper">
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>★ PROJEK KELOMPOK</span>
-                <span>•</span>
-                <span>LARAVEL & MYSQL XAMPP</span>
-            </div>
-            <h1 class="hero-title">SISTEM INFORMASI<br>MANAJEMEN APOTEK</h1>
-            <p class="hero-desc">
-                Aplikasi manajemen data Pelanggan, Staf Apotek, dan Daftar Obat. Terhubung langsung dengan database MySQL XAMPP dan siap diuji melalui Postman API.
-            </p>
-            <div class="hero-actions">
-                <a href="#form-section" class="btn-play">
-                    ⚡ Kelola Data Apotek
-                </a>
-                <a href="{{ route('postman.collection') }}" class="btn-ghost-light">
-                    📥 Download Koleksi Postman
-                </a>
-            </div>
+    <!-- Operational Page Top Bar -->
+    <section class="page-top-bar" aria-labelledby="page-heading">
+        <div class="page-title-block">
+            <h2 id="page-heading">
+                @if($activeTab === 'pelanggan')
+                    Manajemen Data Pelanggan
+                @elseif($activeTab === 'staf')
+                    Manajemen Data Staf Apotek
+                @else
+                    Manajemen Inventaris Obat
+                @endif
+            </h2>
+            <p>Kelola data dan periksa rekaman database secara langsung melalui sistem web maupun Postman API.</p>
         </div>
 
-        <!-- Quick Stats -->
-        <div class="hero-stats-card">
-            <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem; color: #475569;">
-                Status Database MySQL (XAMPP)
-            </h3>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-num">{{ $totalPelanggan }}</div>
-                    <div class="stat-label">Pelanggan</div>
-                </div>
-                <div class="stat-box blue">
-                    <div class="stat-num">{{ $totalStaf }}</div>
-                    <div class="stat-label">Staf Apotek</div>
-                </div>
-                <div class="stat-box yellow">
-                    <div class="stat-num">{{ $totalObat }}</div>
-                    <div class="stat-label">Daftar Obat</div>
-                </div>
-                <div class="stat-box green">
-                    <div class="stat-num">Aktif</div>
-                    <div class="stat-label">MySQL 3306</div>
-                </div>
+        <div class="metrics-row" aria-label="Ringkasan Jumlah Data">
+            <div class="metric-pill">
+                <span>Pelanggan:</span>
+                <strong>{{ $totalPelanggan }}</strong>
+            </div>
+            <div class="metric-pill">
+                <span>Staf Apotek:</span>
+                <strong>{{ $totalStaf }}</strong>
+            </div>
+            <div class="metric-pill">
+                <span>Daftar Obat:</span>
+                <strong>{{ $totalObat }}</strong>
             </div>
         </div>
     </section>
 
-    <!-- Notification Messages -->
+    <!-- Notification Feedback -->
     @if(session('success'))
-        <div class="alert alert-success">
-            <span style="font-size: 1.25rem;">✅</span>
+        <div class="alert-box alert-success" role="alert">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
             <div>{{ session('success') }}</div>
         </div>
     @endif
 
     @if($errors->any())
-        <div class="alert alert-danger">
-            <span style="font-size: 1.25rem;">⚠️</span>
+        <div class="alert-box alert-danger" role="alert">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
             <div>
-                <strong>Periksa kembali data Anda:</strong>
-                <ul style="margin-top: 0.3rem; margin-left: 1.2rem;">
+                <strong>Periksa kembali isian formulir:</strong>
+                <ul style="margin-top: 0.35rem; margin-left: 1.25rem;">
                     @foreach($errors->all() as $err)
                         <li>{{ $err }}</li>
                     @endforeach
@@ -74,301 +64,367 @@
         </div>
     @endif
 
-    <!-- Tab Bar -->
-    <div class="controls-bar" id="form-section">
-        <div class="tabs-list">
-            <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="tab-btn {{ $activeTab === 'pelanggan' ? 'active' : '' }}">
-                👥 Pelanggan ({{ $totalPelanggan }})
-            </a>
-            <a href="{{ route('dashboard', ['tab' => 'staf']) }}" class="tab-btn {{ $activeTab === 'staf' ? 'active' : '' }}">
-                🩺 Staf Apotek ({{ $totalStaf }})
-            </a>
-            <a href="{{ route('dashboard', ['tab' => 'obat']) }}" class="tab-btn {{ $activeTab === 'obat' ? 'active' : '' }}">
-                💊 Daftar Obat ({{ $totalObat }})
-            </a>
-        </div>
-    </div>
+    <!-- Section Tab Bar -->
+    <nav class="tabs-navigation" aria-label="Kategori Data">
+        <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="tab-item {{ $activeTab === 'pelanggan' ? 'active' : '' }}">
+            <span>Pelanggan</span>
+            <span class="tab-count">{{ $totalPelanggan }}</span>
+        </a>
+        <a href="{{ route('dashboard', ['tab' => 'staf']) }}" class="tab-item {{ $activeTab === 'staf' ? 'active' : '' }}">
+            <span>Staf Apotek</span>
+            <span class="tab-count">{{ $totalStaf }}</span>
+        </a>
+        <a href="{{ route('dashboard', ['tab' => 'obat']) }}" class="tab-item {{ $activeTab === 'obat' ? 'active' : '' }}">
+            <span>Daftar Obat</span>
+            <span class="tab-count">{{ $totalObat }}</span>
+        </a>
+    </nav>
 
     <!-- TAB 1: PELANGGAN -->
     @if($activeTab === 'pelanggan')
-    <div class="content-grid">
+    <div class="workspace-grid">
         <!-- Form Pelanggan -->
-        <div class="app-card">
-            <div class="app-card-header">
-                <h2 class="app-card-title">
-                    <span>Pelanggan</span>
-                    <span class="badge-tag">Input Data</span>
-                </h2>
+        <section class="card-panel" aria-labelledby="form-pelanggan-title">
+            <header class="card-panel-header">
+                <h3 id="form-pelanggan-title" class="card-panel-title">Form Tambah Pelanggan</h3>
+            </header>
+            <div class="card-panel-body">
+                <form action="{{ route('pelanggan.store') }}" method="POST">
+                    @csrf
+                    <div class="form-field">
+                        <label for="id_pelanggan" class="form-label">
+                            Id Pelanggan <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="id_pelanggan" name="id_pelanggan" class="form-control" value="{{ old('id_pelanggan', 'PLG-' . str_pad($totalPelanggan + 1, 3, '0', STR_PAD_LEFT)) }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="nama_pelanggan" class="form-label">
+                            Nama Pelanggan <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="nama_pelanggan" name="nama" class="form-control" placeholder="Nama lengkap pelanggan" value="{{ old('nama') }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="alamat_pelanggan" class="form-label">
+                            Alamat <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="alamat_pelanggan" name="alamat" class="form-control" placeholder="Alamat domisili" required>{{ old('alamat') }}</textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="no_hp_pelanggan" class="form-label">
+                            No HP <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="no_hp_pelanggan" name="no_hp" class="form-control" placeholder="Nomor handphone aktif" value="{{ old('no_hp') }}" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Simpan Pelanggan
+                    </button>
+                </form>
             </div>
-            <form action="{{ route('pelanggan.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label class="form-label">Id Pelanggan <span class="req">*</span></label>
-                    <input type="text" name="id_pelanggan" class="form-input" placeholder="Id Pelanggan" value="{{ old('id_pelanggan', 'PLG-' . str_pad($totalPelanggan + 1, 3, '0', STR_PAD_LEFT)) }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Nama <span class="req">*</span></label>
-                    <input type="text" name="nama" class="form-input" placeholder="Nama Pelanggan" value="{{ old('nama') }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Alamat <span class="req">*</span></label>
-                    <textarea name="alamat" class="form-input" placeholder="Alamat Pelanggan" required>{{ old('alamat') }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">No HP <span class="req">*</span></label>
-                    <input type="text" name="no_hp" class="form-input" placeholder="No HP" value="{{ old('no_hp') }}" required>
-                </div>
-                <button type="submit" class="btn-simpan modern">
-                    simpan
-                </button>
-            </form>
-        </div>
+        </section>
 
         <!-- Tabel Pelanggan -->
-        <div class="app-card">
-            <div class="app-card-header">
-                <h2 class="app-card-title">
-                    <span>Data Pelanggan</span>
-                    <span class="badge-tag">{{ $pelanggans->total() }} Data</span>
-                </h2>
-            </div>
-            <div class="table-responsive">
-                <table class="data-table">
+        <section class="card-panel" aria-labelledby="tabel-pelanggan-title">
+            <header class="card-panel-header">
+                <h3 id="tabel-pelanggan-title" class="card-panel-title">Daftar Pelanggan Terdaftar</h3>
+            </header>
+            <div class="table-container">
+                <table class="standard-table">
                     <thead>
                         <tr>
-                            <th>Id Pelanggan</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>No HP</th>
-                            <th style="text-align: right;">Aksi</th>
+                            <th scope="col">Id Pelanggan</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">No HP</th>
+                            <th scope="col" style="text-align: right;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($pelanggans as $p)
                         <tr>
-                            <td><span class="badge-code">{{ $p->id_pelanggan }}</span></td>
-                            <td style="font-weight: 700;">{{ $p->nama }}</td>
+                            <td><span class="code-chip">{{ $p->id_pelanggan }}</span></td>
+                            <td style="font-weight: 600;">{{ $p->nama }}</td>
                             <td>{{ $p->alamat }}</td>
                             <td>{{ $p->no_hp }}</td>
                             <td style="text-align: right;">
-                                <div class="action-btns" style="justify-content: flex-end;">
-                                    <a href="{{ route('pelanggan.edit', $p) }}" class="btn-action-edit">Edit</a>
+                                <div class="table-actions">
+                                    <a href="{{ route('pelanggan.edit', $p) }}" class="action-edit" aria-label="Ubah data {{ $p->nama }}">
+                                        Edit
+                                    </a>
                                     <form action="{{ route('pelanggan.destroy', $p) }}" method="POST" onsubmit="return confirm('Hapus data pelanggan {{ $p->nama }}?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-action-del">Hapus</button>
+                                        <button type="submit" class="action-delete" aria-label="Hapus data {{ $p->nama }}">
+                                            Hapus
+                                        </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" style="text-align: center; padding: 2rem; color: #94a3b8;">
-                                Belum ada data pelanggan.
+                            <td colspan="5" class="empty-state-cell">
+                                <div class="empty-state-text">
+                                    Belum ada data pelanggan yang tersimpan. Gunakan formulir di sebelah kiri untuk menambahkan data pelanggan baru.
+                                </div>
                             </td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top: 1.25rem;">
+            @if($pelanggans->hasPages())
+            <div style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-light);">
                 {{ $pelanggans->appends(['tab' => 'pelanggan'])->links() }}
             </div>
-        </div>
+            @endif
+        </section>
     </div>
     @endif
 
     <!-- TAB 2: STAF APOTEK -->
     @if($activeTab === 'staf')
-    <div class="content-grid">
+    <div class="workspace-grid">
         <!-- Form Staf Apotek -->
-        <div class="app-card">
-            <div class="app-card-header">
-                <h2 class="app-card-title">
-                    <span>Staf Apotek</span>
-                    <span class="badge-tag">Input Data</span>
-                </h2>
+        <section class="card-panel" aria-labelledby="form-staf-title">
+            <header class="card-panel-header">
+                <h3 id="form-staf-title" class="card-panel-title">Form Tambah Staf Apotek</h3>
+            </header>
+            <div class="card-panel-body">
+                <form action="{{ route('staf.store') }}" method="POST">
+                    @csrf
+                    <div class="form-field">
+                        <label for="id_staff" class="form-label">
+                            Id Staff <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="id_staff" name="id_staff" class="form-control" value="{{ old('id_staff', 'STF-' . str_pad($totalStaf + 1, 3, '0', STR_PAD_LEFT)) }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="nama_staff" class="form-label">
+                            Nama <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="nama_staff" name="nama" class="form-control" placeholder="Nama staf dan gelar" value="{{ old('nama') }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="alamat_staff" class="form-label">
+                            Alamat <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="alamat_staff" name="alamat" class="form-control" placeholder="Alamat domisili staf" required>{{ old('alamat') }}</textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="tanggal_lahir" class="form-label">
+                            Tanggal Lahir <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control" value="{{ old('tanggal_lahir') }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="tempat_lahir" class="form-label">
+                            Tempat Lahir <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control" placeholder="Kota kelahiran" value="{{ old('tempat_lahir') }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="no_hp_staff" class="form-label">
+                            No HP <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="no_hp_staff" name="no_hp" class="form-control" placeholder="Nomor handphone aktif" value="{{ old('no_hp') }}" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Simpan Staf Apotek
+                    </button>
+                </form>
             </div>
-            <form action="{{ route('staf.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label class="form-label">Id Staff <span class="req">*</span></label>
-                    <input type="text" name="id_staff" class="form-input" placeholder="Id Staff" value="{{ old('id_staff', 'STF-' . str_pad($totalStaf + 1, 3, '0', STR_PAD_LEFT)) }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Nama <span class="req">*</span></label>
-                    <input type="text" name="nama" class="form-input" placeholder="Nama Staf" value="{{ old('nama') }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Alamat <span class="req">*</span></label>
-                    <textarea name="alamat" class="form-input" placeholder="Alamat Staf" required>{{ old('alamat') }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Tanggal Lahir <span class="req">*</span></label>
-                    <input type="date" name="tanggal_lahir" class="form-input" value="{{ old('tanggal_lahir') }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Tempat lahir <span class="req">*</span></label>
-                    <input type="text" name="tempat_lahir" class="form-input" placeholder="Tempat lahir" value="{{ old('tempat_lahir') }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">No HP <span class="req">*</span></label>
-                    <input type="text" name="no_hp" class="form-input" placeholder="No HP" value="{{ old('no_hp') }}" required>
-                </div>
-                <button type="submit" class="btn-simpan modern">
-                    simpan
-                </button>
-            </form>
-        </div>
+        </section>
 
         <!-- Tabel Staf Apotek -->
-        <div class="app-card">
-            <div class="app-card-header">
-                <h2 class="app-card-title">
-                    <span>Data Staf Apotek</span>
-                    <span class="badge-tag">{{ $stafs->total() }} Data</span>
-                </h2>
-            </div>
-            <div class="table-responsive">
-                <table class="data-table">
+        <section class="card-panel" aria-labelledby="tabel-staf-title">
+            <header class="card-panel-header">
+                <h3 id="tabel-staf-title" class="card-panel-title">Daftar Staf Apotek</h3>
+            </header>
+            <div class="table-container">
+                <table class="standard-table">
                     <thead>
                         <tr>
-                            <th>Id Staff</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Tempat Lahir</th>
-                            <th>No HP</th>
-                            <th style="text-align: right;">Aksi</th>
+                            <th scope="col">Id Staff</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Tanggal Lahir</th>
+                            <th scope="col">Tempat Lahir</th>
+                            <th scope="col">No HP</th>
+                            <th scope="col" style="text-align: right;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($stafs as $s)
                         <tr>
-                            <td><span class="badge-code">{{ $s->id_staff }}</span></td>
-                            <td style="font-weight: 700;">{{ $s->nama }}</td>
+                            <td><span class="code-chip">{{ $s->id_staff }}</span></td>
+                            <td style="font-weight: 600;">{{ $s->nama }}</td>
                             <td>{{ $s->alamat }}</td>
-                            <td>{{ \Carbon\Carbon::parse($s->tanggal_lahir)->format('d-m-Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($s->tanggal_lahir)->format('d M Y') }}</td>
                             <td>{{ $s->tempat_lahir }}</td>
                             <td>{{ $s->no_hp }}</td>
                             <td style="text-align: right;">
-                                <div class="action-btns" style="justify-content: flex-end;">
-                                    <a href="{{ route('staf.edit', $s) }}" class="btn-action-edit">Edit</a>
-                                    <form action="{{ route('staf.destroy', $s) }}" method="POST" onsubmit="return confirm('Hapus staf {{ $s->nama }}?');">
+                                <div class="table-actions">
+                                    <a href="{{ route('staf.edit', $s) }}" class="action-edit" aria-label="Ubah data {{ $s->nama }}">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('staf.destroy', $s) }}" method="POST" onsubmit="return confirm('Hapus data staf {{ $s->nama }}?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-action-del">Hapus</button>
+                                        <button type="submit" class="action-delete" aria-label="Hapus data {{ $s->nama }}">
+                                            Hapus
+                                        </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" style="text-align: center; padding: 2rem; color: #94a3b8;">
-                                Belum ada data staf apotek.
+                            <td colspan="7" class="empty-state-cell">
+                                <div class="empty-state-text">
+                                    Belum ada data staf apotek yang tersimpan. Gunakan formulir di sebelah kiri untuk menambahkan staf apotek baru.
+                                </div>
                             </td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top: 1.25rem;">
+            @if($stafs->hasPages())
+            <div style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-light);">
                 {{ $stafs->appends(['tab' => 'staf'])->links() }}
             </div>
-        </div>
+            @endif
+        </section>
     </div>
     @endif
 
     <!-- TAB 3: DAFTAR OBAT -->
     @if($activeTab === 'obat')
-    <div class="content-grid">
+    <div class="workspace-grid">
         <!-- Form Obat -->
-        <div class="app-card">
-            <div class="app-card-header">
-                <h2 class="app-card-title">
-                    <span>Daftar Obat</span>
-                    <span class="badge-tag">Input Data</span>
-                </h2>
+        <section class="card-panel" aria-labelledby="form-obat-title">
+            <header class="card-panel-header">
+                <h3 id="form-obat-title" class="card-panel-title">Form Tambah Obat</h3>
+            </header>
+            <div class="card-panel-body">
+                <form action="{{ route('obat.store') }}" method="POST">
+                    @csrf
+                    <div class="form-field">
+                        <label for="kode_obat" class="form-label">
+                            Kode Obat <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="kode_obat" name="kode_obat" class="form-control" value="{{ old('kode_obat', 'OBT-' . str_pad($totalObat + 1, 3, '0', STR_PAD_LEFT)) }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="nama_obat" class="form-label">
+                            Nama Obat <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="nama_obat" name="nama_obat" class="form-control" placeholder="Nama obat dan dosis" value="{{ old('nama_obat') }}" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="stock_obat" class="form-label">
+                            Stock Obat <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="number" id="stock_obat" name="stock_obat" class="form-control" placeholder="Jumlah fisik obat" value="{{ old('stock_obat', 10) }}" min="0" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="tanggal_kadaluarsa" class="form-label">
+                            Tanggal Kadaluarsa / Expired <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input type="date" id="tanggal_kadaluarsa" name="tanggal_kadaluarsa" class="form-control" value="{{ old('tanggal_kadaluarsa') }}" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Simpan Data Obat
+                    </button>
+                </form>
             </div>
-            <form action="{{ route('obat.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label class="form-label">kode obat <span class="req">*</span></label>
-                    <input type="text" name="kode_obat" class="form-input" placeholder="kode obat" value="{{ old('kode_obat', 'OBT-' . str_pad($totalObat + 1, 3, '0', STR_PAD_LEFT)) }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Nama Obat <span class="req">*</span></label>
-                    <input type="text" name="nama_obat" class="form-input" placeholder="Nama Obat" value="{{ old('nama_obat') }}" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Stock obat <span class="req">*</span></label>
-                    <input type="number" name="stock_obat" class="form-input" placeholder="Stock obat" value="{{ old('stock_obat', 10) }}" min="0" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Tanggal Kadaluarsa/expired Obat <span class="req">*</span></label>
-                    <input type="date" name="tanggal_kadaluarsa" class="form-input" value="{{ old('tanggal_kadaluarsa') }}" required>
-                </div>
-                <button type="submit" class="btn-simpan modern">
-                    simpan
-                </button>
-            </form>
-        </div>
+        </section>
 
         <!-- Tabel Obat -->
-        <div class="app-card">
-            <div class="app-card-header">
-                <h2 class="app-card-title">
-                    <span>Daftar Obat Tersimpan</span>
-                    <span class="badge-tag">{{ $obats->total() }} Obat</span>
-                </h2>
-            </div>
-            <div class="table-responsive">
-                <table class="data-table">
+        <section class="card-panel" aria-labelledby="tabel-obat-title">
+            <header class="card-panel-header">
+                <h3 id="tabel-obat-title" class="card-panel-title">Katalog Inventaris Obat</h3>
+            </header>
+            <div class="table-container">
+                <table class="standard-table">
                     <thead>
                         <tr>
-                            <th>Kode Obat</th>
-                            <th>Nama Obat</th>
-                            <th>Stock</th>
-                            <th>Tanggal Kadaluarsa</th>
-                            <th style="text-align: right;">Aksi</th>
+                            <th scope="col">Kode Obat</th>
+                            <th scope="col">Nama Obat</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Kadaluarsa</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" style="text-align: right;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($obats as $o)
+                        @php
+                            $exp = \Carbon\Carbon::parse($o->tanggal_kadaluarsa);
+                            $isExpired = $exp->isPast();
+                            $isLowStock = $o->stock_obat <= 15;
+                        @endphp
                         <tr>
-                            <td><span class="badge-code">{{ $o->kode_obat }}</span></td>
-                            <td style="font-weight: 700;">{{ $o->nama_obat }}</td>
+                            <td><span class="code-chip">{{ $o->kode_obat }}</span></td>
+                            <td style="font-weight: 600;">{{ $o->nama_obat }}</td>
+                            <td>{{ $o->stock_obat }} unit</td>
+                            <td>{{ $exp->format('d M Y') }}</td>
                             <td>
-                                <span class="badge-stock {{ $o->stock_obat > 50 ? 'high' : ($o->stock_obat > 15 ? 'medium' : 'low') }}">
-                                    {{ $o->stock_obat }}
-                                </span>
+                                @if($isExpired)
+                                    <span class="status-badge expired">Kadaluarsa</span>
+                                @elseif($isLowStock)
+                                    <span class="status-badge low-stock">Stok Menipis</span>
+                                @else
+                                    <span class="status-badge in-stock">Tersedia</span>
+                                @endif
                             </td>
-                            <td>{{ \Carbon\Carbon::parse($o->tanggal_kadaluarsa)->format('d-m-Y') }}</td>
                             <td style="text-align: right;">
-                                <div class="action-btns" style="justify-content: flex-end;">
-                                    <a href="{{ route('obat.edit', $o) }}" class="btn-action-edit">Edit</a>
+                                <div class="table-actions">
+                                    <a href="{{ route('obat.edit', $o) }}" class="action-edit" aria-label="Ubah data {{ $o->nama_obat }}">
+                                        Edit
+                                    </a>
                                     <form action="{{ route('obat.destroy', $o) }}" method="POST" onsubmit="return confirm('Hapus obat {{ $o->nama_obat }}?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-action-del">Hapus</button>
+                                        <button type="submit" class="action-delete" aria-label="Hapus data {{ $o->nama_obat }}">
+                                            Hapus
+                                        </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" style="text-align: center; padding: 2rem; color: #94a3b8;">
-                                Belum ada data obat.
+                            <td colspan="6" class="empty-state-cell">
+                                <div class="empty-state-text">
+                                    Belum ada data obat yang tersimpan. Gunakan formulir di sebelah kiri untuk mencatat obat baru.
+                                </div>
                             </td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top: 1.25rem;">
+            @if($obats->hasPages())
+            <div style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-light);">
                 {{ $obats->appends(['tab' => 'obat'])->links() }}
             </div>
-        </div>
+            @endif
+        </section>
     </div>
     @endif
 </main>

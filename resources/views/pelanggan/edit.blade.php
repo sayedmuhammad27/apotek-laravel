@@ -1,51 +1,58 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Pelanggan · ' . $pelanggan->nama)
+@section('title', 'Edit Pelanggan: ' . $pelanggan->nama)
 
 @section('content')
-<main class="main-wrapper" style="max-width: 650px; margin-top: 2rem;">
-    <div class="app-card">
-        <div class="app-card-header">
-            <h2 class="app-card-title">
-                <span>Edit Data Pelanggan</span>
-                <span class="badge-tag">{{ $pelanggan->id_pelanggan }}</span>
-            </h2>
-            <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="btn-action-edit" style="text-decoration: none;">← Kembali</a>
+<main class="main-wrapper" style="max-width: 600px;">
+    <section class="card-panel" aria-labelledby="edit-pelanggan-title">
+        <header class="card-panel-header">
+            <h2 id="edit-pelanggan-title" class="card-panel-title">Edit Data Pelanggan</h2>
+            <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="action-edit" style="font-size: 0.85rem;">Kembali ke Daftar</a>
+        </header>
+
+        <div class="card-panel-body">
+            <form action="{{ route('pelanggan.update', $pelanggan) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="form-field">
+                    <label for="id_pelanggan" class="form-label">
+                        Id Pelanggan <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="id_pelanggan" name="id_pelanggan" class="form-control" value="{{ old('id_pelanggan', $pelanggan->id_pelanggan) }}" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="nama_pelanggan" class="form-label">
+                        Nama Pelanggan <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="nama_pelanggan" name="nama" class="form-control" value="{{ old('nama', $pelanggan->nama) }}" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="alamat_pelanggan" class="form-label">
+                        Alamat <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <textarea id="alamat_pelanggan" name="alamat" class="form-control" required>{{ old('alamat', $pelanggan->alamat) }}</textarea>
+                </div>
+
+                <div class="form-field">
+                    <label for="no_hp_pelanggan" class="form-label">
+                        No HP <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="no_hp_pelanggan" name="no_hp" class="form-control" value="{{ old('no_hp', $pelanggan->no_hp) }}" required>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn-primary" style="flex: 1;">
+                        Simpan Perubahan
+                    </button>
+                    <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="btn-secondary" style="flex: 1;">
+                        Batal
+                    </a>
+                </div>
+            </form>
         </div>
-
-        <form action="{{ route('pelanggan.update', $pelanggan) }}" method="POST">
-            @csrf
-            @method('PUT')
-
-            <div class="form-group">
-                <label class="form-label">Id Pelanggan</label>
-                <input type="text" name="id_pelanggan" class="form-input" value="{{ old('id_pelanggan', $pelanggan->id_pelanggan) }}" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Nama Pelanggan</label>
-                <input type="text" name="nama" class="form-input" value="{{ old('nama', $pelanggan->nama) }}" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Alamat</label>
-                <textarea name="alamat" class="form-input" required>{{ old('alamat', $pelanggan->alamat) }}</textarea>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">No HP</label>
-                <input type="text" name="no_hp" class="form-input" value="{{ old('no_hp', $pelanggan->no_hp) }}" required>
-            </div>
-
-            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                <button type="submit" class="btn-simpan modern" style="flex: 1;">
-                    💾 Simpan Perubahan
-                </button>
-                <a href="{{ route('dashboard', ['tab' => 'pelanggan']) }}" class="btn-action-del" style="padding: 0.85rem 1.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">
-                    Batal
-                </a>
-            </div>
-        </form>
-    </div>
+    </section>
 </main>
 @endsection
