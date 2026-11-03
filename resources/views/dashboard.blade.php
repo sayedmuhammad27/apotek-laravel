@@ -18,21 +18,6 @@
             </h2>
             <p>Kelola data dan periksa rekaman database secara langsung melalui sistem web maupun Postman API.</p>
         </div>
-
-        <div class="metrics-row" aria-label="Ringkasan Jumlah Data">
-            <div class="metric-pill">
-                <span>Pelanggan:</span>
-                <strong>{{ $totalPelanggan }}</strong>
-            </div>
-            <div class="metric-pill">
-                <span>Staf Apotek:</span>
-                <strong>{{ $totalStaf }}</strong>
-            </div>
-            <div class="metric-pill">
-                <span>Daftar Obat:</span>
-                <strong>{{ $totalObat }}</strong>
-            </div>
-        </div>
     </section>
 
     <!-- Notification Feedback -->
@@ -135,11 +120,11 @@
                 <table class="standard-table">
                     <thead>
                         <tr>
-                            <th scope="col">Id Pelanggan</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">No HP</th>
-                            <th scope="col" style="text-align: right;">Aksi</th>
+                            <th scope="col" style="width: 18%;">Id Pelanggan</th>
+                            <th scope="col" style="width: 25%;">Nama</th>
+                            <th scope="col" style="width: 27%;">Alamat</th>
+                            <th scope="col" style="width: 15%;">No HP</th>
+                            <th scope="col" style="width: 15%; text-align: right;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -177,7 +162,7 @@
                 </table>
             </div>
             @if($pelanggans->hasPages())
-            <div style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-light);">
+            <div class="pagination-container">
                 {{ $pelanggans->appends(['tab' => 'pelanggan'])->links() }}
             </div>
             @endif
@@ -254,13 +239,12 @@
                 <table class="standard-table">
                     <thead>
                         <tr>
-                            <th scope="col">Id Staff</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Tanggal Lahir</th>
-                            <th scope="col">Tempat Lahir</th>
-                            <th scope="col">No HP</th>
-                            <th scope="col" style="text-align: right;">Aksi</th>
+                            <th scope="col" style="width: 15%;">Id Staff</th>
+                            <th scope="col" style="width: 22%;">Nama</th>
+                            <th scope="col" style="width: 20%;">Alamat</th>
+                            <th scope="col" style="width: 14%;">Tanggal Lahir</th>
+                            <th scope="col" style="width: 14%;">Tempat Lahir</th>
+                            <th scope="col" style="width: 15%; text-align: right;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -271,7 +255,6 @@
                             <td>{{ $s->alamat }}</td>
                             <td>{{ \Carbon\Carbon::parse($s->tanggal_lahir)->format('d M Y') }}</td>
                             <td>{{ $s->tempat_lahir }}</td>
-                            <td>{{ $s->no_hp }}</td>
                             <td style="text-align: right;">
                                 <div class="table-actions">
                                     <a href="{{ route('staf.edit', $s) }}" class="action-edit" aria-label="Ubah data {{ $s->nama }}">
@@ -289,7 +272,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="empty-state-cell">
+                            <td colspan="6" class="empty-state-cell">
                                 <div class="empty-state-text">
                                     Belum ada data staf apotek yang tersimpan. Gunakan formulir di sebelah kiri untuk menambahkan staf apotek baru.
                                 </div>
@@ -300,7 +283,7 @@
                 </table>
             </div>
             @if($stafs->hasPages())
-            <div style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-light);">
+            <div class="pagination-container">
                 {{ $stafs->appends(['tab' => 'staf'])->links() }}
             </div>
             @endif
@@ -363,12 +346,12 @@
                 <table class="standard-table">
                     <thead>
                         <tr>
-                            <th scope="col">Kode Obat</th>
-                            <th scope="col">Nama Obat</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Kadaluarsa</th>
-                            <th scope="col">Status</th>
-                            <th scope="col" style="text-align: right;">Aksi</th>
+                            <th scope="col" style="width: 18%;">Kode Obat</th>
+                            <th scope="col" style="width: 27%;">Nama Obat</th>
+                            <th scope="col" style="width: 15%;">Stock</th>
+                            <th scope="col" style="width: 15%;">Kadaluarsa</th>
+                            <th scope="col" style="width: 15%;">Status</th>
+                            <th scope="col" style="width: 10%; text-align: right;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -420,7 +403,7 @@
                 </table>
             </div>
             @if($obats->hasPages())
-            <div style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-light);">
+            <div class="pagination-container">
                 {{ $obats->appends(['tab' => 'obat'])->links() }}
             </div>
             @endif
