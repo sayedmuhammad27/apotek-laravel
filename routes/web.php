@@ -24,3 +24,8 @@ Route::resource('obat', ObatController::class);
 // Postman Export Routes
 Route::get('/postman/collection.json', [PostmanExportController::class, 'downloadCollection'])->name('postman.collection');
 Route::get('/postman/environment.json', [PostmanExportController::class, 'downloadEnvironment'])->name('postman.environment');
+
+// Laporan HTML Viewer Route
+Route::get('/laporan', function () {
+    return response()->file(base_path('LAPORAN_PROJEK.html'));
+})->name('laporan');

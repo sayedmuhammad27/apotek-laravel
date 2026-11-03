@@ -28,6 +28,7 @@
                     <li><a href="{{ route('dashboard', ['tab' => 'obat', 'mode' => request('mode', 'modern')]) }}" class="nav-link {{ request('tab') === 'obat' && request('mode') !== 'lampiran' ? 'active' : '' }}">Daftar Obat</a></li>
                     <li><a href="{{ route('dashboard', ['tab' => 'api', 'mode' => request('mode', 'modern')]) }}" class="nav-link {{ request('tab') === 'api' ? 'active' : '' }}">REST API & Postman</a></li>
                     <li><a href="{{ route('dashboard', ['mode' => 'lampiran']) }}" class="nav-link {{ request('mode') === 'lampiran' ? 'active' : '' }}" style="color: #0284c7; font-weight: 700;">📄 Format PDF</a></li>
+                    <li><a href="{{ route('laporan') }}" target="_blank" class="nav-link" style="color: #15803d; font-weight: 700;">📑 Laporan Lengkap</a></li>
                     <li><a href="{{ route('postman.collection') }}" class="nav-cta-btn">🚀 Download Postman</a></li>
                 </ul>
             </nav>
@@ -44,6 +45,7 @@
                 <strong>Apotek Farma Care</strong> — Tugas Projek Kelompok Pemrograman Web & API
             </div>
             <div>
+                <a href="{{ route('laporan') }}" target="_blank" style="color: #be123c; font-weight: 700; text-decoration: none; margin-right: 1rem;">Lihat Laporan Proyek</a>
                 Laravel Framework v12 · Postman Collection v2.1 · SQLite / MySQL XAMPP
             </div>
         </div>
