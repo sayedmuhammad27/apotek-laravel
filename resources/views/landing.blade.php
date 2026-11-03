@@ -398,8 +398,8 @@
                     <div class="member-card">
                         <div class="member-avatar" aria-hidden="true">SM</div>
                         <div class="member-info">
-                            <h4>Sayed Muhammad</h4>
-                            <span class="member-role">Pengembang / Mahasiswa</span>
+                            <h4>Sayed Muhammad Fathah Al Muttaqin</h4>
+                            <span class="member-role">NIM: 2025903430076 · TRKJ.2A</span>
                             <a href="https://github.com/sayedmuhammad27" target="_blank" rel="noopener noreferrer" class="member-gh">
                                 github.com/sayedmuhammad27
                             </a>
@@ -409,8 +409,8 @@
                     <div class="member-card">
                         <div class="member-avatar" aria-hidden="true">MN</div>
                         <div class="member-info">
-                            <h4>Muhammad Nabil Al Firdaus</h4>
-                            <span class="member-role">Pengembang / Mahasiswa</span>
+                            <h4>Muhammad Nabil Al-Firdaus</h4>
+                            <span class="member-role">NIM: 2025903430015 · TRKJ.2A</span>
                             <a href="https://github.com/projectfall26-beep" target="_blank" rel="noopener noreferrer" class="member-gh">
                                 github.com/projectfall26-beep
                             </a>

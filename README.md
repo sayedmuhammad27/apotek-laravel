@@ -5,11 +5,15 @@ Aplikasi Web Manajemen Apotek & Farmasi berbasis **Laravel 12** yang dilengkapi 
 ---
 
 ## 👥 Informasi Pengembang & Projek
-- **Nama Pengembang / Mahasiswa**: Sayed Muhammad (`sayedmuhammad27`), Muhammad Nabil Al Firdaus (`projectfall26-beep`)
-- **Mata Kuliah / Tugas**: Sistem Terintegrasi Projek 2
+- **Nama Pengembang / Mahasiswa**:
+  1. Sayed Muhammad Fathah Al Muttaqin (NIM: 2025903430076) — GitHub: [`sayedmuhammad27`](https://github.com/sayedmuhammad27)
+  2. Muhammad Nabil Al-Firdaus (NIM: 2025903430015) — GitHub: [`projectfall26-beep`](https://github.com/projectfall26-beep)
+- **Kelas / Program Studi**: TRKJ.2A / Teknologi Rekayasa Komputer Jaringan, Jurusan TIK, Politeknik Negeri Lhokseumawe
+- **Mata Kuliah / Dosen Pengampu**: Teknologi Sistem Terintegrasi / Hari Toha Hidayat, S.Si., M.Cs
 - **Framework**: Laravel 12.x (PHP 8.2+)
-- **Database**: SQLite (Default Zero-Config) / MySQL XAMPP
+- **Database**: MySQL XAMPP (Port 3306) / SQLite Fallback
 - **Dokumentasi API**: Postman Collection v2.1
+- **File Laporan Praktikum**: `LAPORAN_PRAKTIKUM_SISTEM_TERINTEGRASI.docx` & `LAPORAN_PROJEK.md`
 
 ---
 

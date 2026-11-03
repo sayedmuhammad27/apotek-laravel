@@ -54,7 +54,7 @@
     <footer class="site-footer">
         <div class="footer-inner">
             <div>
-                <strong>Apotek Farma Care</strong> : Sistem Terintegrasi Projek 2 (Sayed Muhammad, Muhammad Nabil Al Firdaus)
+                <strong>Apotek Farma Care</strong> : Sistem Terintegrasi Projek 2 (Sayed Muhammad Fathah Al Muttaqin - 2025903430076, Muhammad Nabil Al-Firdaus - 2025903430015)
             </div>
             <div>
                 Laravel Framework (PHP 8.2) · MySQL XAMPP · Postman Collection v2.1
