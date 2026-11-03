@@ -1,0 +1,328 @@
+{
+  "info": {
+    "_postman_id": "apotek-laravel-api-collection",
+    "name": "Apotek Laravel RESTful API Collection",
+    "description": "Koleksi Postman untuk pengujian API Pelanggan, Staf Apotek, dan Daftar Obat (Projek Kelompok Apotek)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Pelanggan",
+      "item": [
+        {
+          "name": "GET Semua Pelanggan",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/pelanggan",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pelanggan"]
+            }
+          }
+        },
+        {
+          "name": "POST Tambah Pelanggan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": \"PLG-099\",\n  \"nama\": \"Muhammad Syahrial\",\n  \"alamat\": \"Jl. Syiah Kuala No. 100, Banda Aceh\",\n  \"no_hp\": \"081299887766\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pelanggan",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pelanggan"]
+            }
+          }
+        },
+        {
+          "name": "GET Detail Pelanggan",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/pelanggan/PLG-001",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pelanggan", "PLG-001"]
+            }
+          }
+        },
+        {
+          "name": "PUT Perbarui Pelanggan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Ahmad Fauzi (Updated)\",\n  \"alamat\": \"Jl. Merdeka No. 99, Banda Aceh\",\n  \"no_hp\": \"081234567899\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pelanggan/PLG-001",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pelanggan", "PLG-001"]
+            }
+          }
+        },
+        {
+          "name": "DELETE Hapus Pelanggan",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/pelanggan/PLG-099",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pelanggan", "PLG-099"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Staf Apotek",
+      "item": [
+        {
+          "name": "GET Semua Staf Apotek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/staff",
+              "host": ["{{base_url}}"],
+              "path": ["api", "staff"]
+            }
+          }
+        },
+        {
+          "name": "POST Tambah Staf Apotek",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_staff\": \"STF-099\",\n  \"nama\": \"Nadia Amanda, S.Farm\",\n  \"alamat\": \"Jl. Pelajar No. 15, Banda Aceh\",\n  \"tanggal_lahir\": \"2001-05-20\",\n  \"tempat_lahir\": \"Sigli\",\n  \"no_hp\": \"082366778899\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/staff",
+              "host": ["{{base_url}}"],
+              "path": ["api", "staff"]
+            }
+          }
+        },
+        {
+          "name": "GET Detail Staf Apotek",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/staff/STF-001",
+              "host": ["{{base_url}}"],
+              "path": ["api", "staff", "STF-001"]
+            }
+          }
+        },
+        {
+          "name": "PUT Perbarui Staf Apotek",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Sayed Muhammad (Manager)\",\n  \"alamat\": \"Jl. Kebon Jeruk No. 17, Banda Aceh\",\n  \"tanggal_lahir\": \"2001-08-15\",\n  \"tempat_lahir\": \"Banda Aceh\",\n  \"no_hp\": \"081122334400\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/staff/STF-001",
+              "host": ["{{base_url}}"],
+              "path": ["api", "staff", "STF-001"]
+            }
+          }
+        },
+        {
+          "name": "DELETE Hapus Staf Apotek",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/staff/STF-099",
+              "host": ["{{base_url}}"],
+              "path": ["api", "staff", "STF-099"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Daftar Obat",
+      "item": [
+        {
+          "name": "GET Semua Obat",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/obat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "obat"]
+            }
+          }
+        },
+        {
+          "name": "POST Tambah Obat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kode_obat\": \"OBT-099\",\n  \"nama_obat\": \"Dexamethasone 0.5mg\",\n  \"stock_obat\": 50,\n  \"tanggal_kadaluarsa\": \"2028-11-30\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/obat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "obat"]
+            }
+          }
+        },
+        {
+          "name": "GET Detail Obat",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/obat/OBT-001",
+              "host": ["{{base_url}}"],
+              "path": ["api", "obat", "OBT-001"]
+            }
+          }
+        },
+        {
+          "name": "PUT Perbarui Obat",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_obat\": \"Paracetamol Forte 650mg\",\n  \"stock_obat\": 150,\n  \"tanggal_kadaluarsa\": \"2028-12-31\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/obat/OBT-001",
+              "host": ["{{base_url}}"],
+              "path": ["api", "obat", "OBT-001"]
+            }
+          }
+        },
+        {
+          "name": "DELETE Hapus Obat",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/obat/OBT-099",
+              "host": ["{{base_url}}"],
+              "path": ["api", "obat", "OBT-099"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
