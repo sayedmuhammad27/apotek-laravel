@@ -13,7 +13,6 @@ Aplikasi Web Manajemen Apotek & Farmasi berbasis **Laravel 12** yang dilengkapi 
 - **Framework**: Laravel 12.x (PHP 8.2+)
 - **Database**: MySQL XAMPP (Port 3306) / SQLite Fallback
 - **Dokumentasi API**: Postman Collection v2.1
-- **File Laporan Praktikum**: `LAPORAN_PRAKTIKUM_SISTEM_TERINTEGRASI.docx` & `LAPORAN_PROJEK.md`
 
 ---
 
