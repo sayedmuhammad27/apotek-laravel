@@ -4,9 +4,9 @@ Aplikasi Web Manajemen Apotek & Farmasi berbasis **Laravel 12** yang dilengkapi 
 
 ---
 
-## 👥 Anggota Kelompok
-- **Nama Pengembang / Mahasiswa**: Sayed Muhammad (`sayedmuhammad27`)
-- **Mata Kuliah / Tugas**: Pemrograman Web & Arsitektur API (Projek Kelompok)
+## 👥 Informasi Pengembang & Projek
+- **Nama Pengembang / Mahasiswa**: Sayed Muhammad (`sayedmuhammad27`), Muhammad Nabil Al Firdaus (`projectfall26-beep`)
+- **Mata Kuliah / Tugas**: Sistem Terintegrasi Projek 2
 - **Framework**: Laravel 12.x (PHP 8.2+)
 - **Database**: SQLite (Default Zero-Config) / MySQL XAMPP
 - **Dokumentasi API**: Postman Collection v2.1
@@ -20,7 +20,7 @@ Aplikasi Web Manajemen Apotek & Farmasi berbasis **Laravel 12** yang dilengkapi 
    - Nama Pelanggan
    - Alamat Domisili
    - Nomor HP
-   - Tombol Simpan & Manajemen CRUD
+   - Tombol Simpan & Manajemen CRUD Lengkap (Tambah, Lihat, Edit, Hapus)
 
 2. **Modul Staf Apotek (`staf_apoteks`)**
    - Id Staff (Kode Unik)
@@ -29,23 +29,18 @@ Aplikasi Web Manajemen Apotek & Farmasi berbasis **Laravel 12** yang dilengkapi 
    - Tanggal Lahir (Date Picker)
    - Tempat Lahir
    - Nomor HP
-   - Tombol Simpan & Manajemen CRUD
+   - Tombol Simpan & Manajemen CRUD Lengkap
 
 3. **Modul Daftar Obat (`obats`)**
    - Kode Obat (Kode Unik)
    - Nama Obat & Sediaan
    - Stock Obat
    - Tanggal Kadaluarsa / Expired (Date Picker)
-   - Status Kadaluarsa Otomatis (Aman, Hampir Expired, Kadaluarsa)
+   - Tombol Simpan & Manajemen CRUD Lengkap
 
-4. **Dua Mode Tampilan Antarmuka**
-   - **Mode Modern (Desain Referensi)**: Tampilan visual modern dengan nuansa magenta-crimson, aksen emas, kartu interaktif 3D, widget live stats, dan search filter.
-   - **Mode Lampiran (Format Asli PDF)**: Layout formulir minimalis persis seperti lembar tugas dosen untuk kemudahan validasi penilaian.
-
-5. **Pusat Integrasi RESTful API & Postman**
+4. **Integrasi RESTful API & Postman**
    - Koleksi Postman siap pakai: `Apotek_API.postman_collection.json`
-   - Environment Postman: `Apotek_Environment.postman_environment.json`
-   - Live API Console di antarmuka web untuk pengujian respons JSON tanpa harus keluar dari browser.
+   - Terhubung langsung ke URL `http://127.0.0.1:8000` tanpa perlu konfigurasi variabel environment manual.
 
 ---
 
@@ -79,41 +74,39 @@ Generate application key:
 php artisan key:generate
 ```
 
-### 4. Menyiapkan Database
-Aplikasi ini sudah dikonfigurasi menggunakan **SQLite** secara default agar langsung berjalan tanpa perlu install/jalankan MySQL server:
+### 4. Menyiapkan Database (MySQL XAMPP)
+1. Buka **XAMPP Control Panel** dan pastikan service **MySQL** berstatus **Running** (port 3306).
+2. Jalankan migrasi dan seeder data awal:
 ```bash
-# Buat file database sqlite (jika belum ada)
-type nul > database\database.sqlite
-
-# Jalankan migrasi dan isi data awal (seeder)
 php artisan migrate:fresh --seed
 ```
+*(Tersedia juga file SQL mentah di `database/apotek_db.sql` jika ingin import manual lewat phpMyAdmin)*.
 
-> **Catatan Penggunaan MySQL (XAMPP):**  
-> Jika ingin menggunakan database MySQL di XAMPP:
-> 1. Buka XAMPP Control Panel dan jalankan service **MySQL**.
-> 2. Klik dua kali file `import-database-mysql.bat` atau import manual `database/apotek_db.sql` di phpMyAdmin.
-> 3. Buka file `.env`, ubah `DB_CONNECTION=mysql` dan sesuaikan nama database `DB_DATABASE=apotek_db`.
-> 4. Jalankan `php artisan config:clear`.
+> **Catatan Dukungan SQLite:**  
+> Jika tidak ingin menjalankan MySQL, aplikasi juga mendukung SQLite out-of-the-box:
+> ```bash
+> type nul > database\database.sqlite
+> # Ubah DB_CONNECTION=sqlite di .env lalu jalankan migrate
+> php artisan migrate:fresh --seed
+> ```
 
 ### 5. Jalankan Web Server
 ```bash
 php artisan serve
 ```
-Buka browser Anda dan kunjungi: **`http://127.0.0.1:8000`**
+Buka peramban Anda dan kunjungi: **`http://127.0.0.1:8000`**
 
 *(Di Windows, Anda juga cukup mengklik dua kali file `jalankan-aplikasi.bat`)*
 
 ---
 
-## 📮 Panduan Menghubungkan ke Postman
+## 📮 Panduan Pengujian REST API Lewat Postman
 
 1. Buka aplikasi **Postman**.
 2. Klik tombol **Import** di pojok kiri atas.
-3. Pilih file **`Apotek_API.postman_collection.json`** yang ada di direktori root project (atau download langsung melalui navbar aplikasi pada route `/postman/collection.json`).
-4. (Opsional) Import file **`Apotek_Environment.postman_environment.json`** dan pilih active environment "Apotek Local Environment".
-5. Pastikan server Laravel sedang berjalan (`php artisan serve`).
-6. Jalankan setiap request pada koleksi Postman:
+3. Pilih file **`Apotek_API.postman_collection.json`** yang ada di direktori root project.
+4. Pastikan server Laravel sedang berjalan (`php artisan serve`).
+5. Langsung jalankan setiap request pada koleksi Postman (sudah siap pakai ke `http://127.0.0.1:8000`):
    - **Pelanggan**: `GET /api/pelanggan`, `POST /api/pelanggan`, `GET /api/pelanggan/{id}`, `PUT /api/pelanggan/{id}`, `DELETE /api/pelanggan/{id}`
    - **Staf Apotek**: `GET /api/staff`, `POST /api/staff`, `GET /api/staff/{id}`, `PUT /api/staff/{id}`, `DELETE /api/staff/{id}`
    - **Daftar Obat**: `GET /api/obat`, `POST /api/obat`, `GET /api/obat/{id}`, `PUT /api/obat/{id}`, `DELETE /api/obat/{id}`

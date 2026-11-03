@@ -37,7 +37,7 @@
     <footer class="site-footer">
         <div class="footer-inner">
             <div>
-                <strong>Apotek Farma Care</strong> — Projek Kelompok Pemrograman Web
+                <strong>Apotek Farma Care</strong> — Sistem Terintegrasi Projek 2 (Sayed Muhammad & Muhammad Nabil Al Firdaus)
             </div>
             <div>
                 Laravel Framework · MySQL (XAMPP) · Postman REST API

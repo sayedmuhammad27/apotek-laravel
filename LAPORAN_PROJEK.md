@@ -1,10 +1,10 @@
 # LAPORAN LENGKAP PROJEK KELOMPOK
 ## PENGEMBANGAN SISTEM INFORMASI APOTEK BERBASIS LARAVEL 12 TERINTEGRASI POSTMAN API DAN GITHUB
 
-* **Mata Kuliah / Tugas**: Pemrograman Web & RESTful API (Projek Kelompok)
+* **Mata Kuliah / Tugas**: Sistem Terintegrasi Projek 2
 * **Tanggal Presentasi**: Kamis, 6 November 2026
-* **Pengembang / Mahasiswa**: Sayed Muhammad (`sayedmuhammad27`) & Tim
-* **Teknologi**: Laravel 12, PHP 8.2, SQLite & MySQL, Postman API, Git & GitHub
+* **Pengembang / Mahasiswa**: Sayed Muhammad (`sayedmuhammad27`), Muhammad Nabil Al Firdaus (`projectfall26-beep`)
+* **Teknologi**: Laravel 12.x (PHP 8.2+), SQLite & MySQL XAMPP, Postman Collection v2.1, Git & GitHub
 
 ---
 
